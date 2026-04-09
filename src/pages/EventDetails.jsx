@@ -1,6 +1,7 @@
 import "./EventDetails.css";
 import { campusEvents } from "../data/events";
 import { Link, useParams } from "react-router-dom";
+import { FiCalendar, FiClock, FiMapPin, FiArrowLeft } from "react-icons/fi";
 
 export function EventDetails() {
   const { eventId } = useParams();
@@ -8,14 +9,17 @@ export function EventDetails() {
 
   if (!event)
     return (
-      <>
+      <section className="not-found-page">
         <p>Event does not exist</p>
-        <Link to="/events">Go back to the events list</Link>
-      </>
+        <Link to="/events" className="hero-cta"><FiArrowLeft /> Back to Events</Link>
+      </section>
     );
 
   return (
     <div className="event-details-container">
+      {/* Back link */}
+      <Link to="/events" className="back-link"><FiArrowLeft /> All Events</Link>
+
       {/* Header Section */}
       <div className="header-section">
         <h1 className="event-title">{event.name}</h1>
@@ -47,17 +51,17 @@ export function EventDetails() {
 
           <div className="details-list">
             <div className="detail-item">
-              <span className="detail-label">📅 Date:</span>
+              <span className="detail-label"><FiCalendar /> Date:</span>
               <span className="detail-value">{event.date}</span>
             </div>
 
             <div className="detail-item">
-              <span className="detail-label">🕐 Time:</span>
+              <span className="detail-label"><FiClock /> Time:</span>
               <span className="detail-value">{event.time}</span>
             </div>
 
             <div className="detail-item">
-              <span className="detail-label">📍 Location:</span>
+              <span className="detail-label"><FiMapPin /> Location:</span>
               <span className="detail-value">{event.location}</span>
             </div>
           </div>
